@@ -1,0 +1,46 @@
+.categories {
+
+    ul {
+        display: flex;
+
+        li {
+            background-color: #f9f9f9;
+            padding: 13px 30px;
+            border-radius: 10px;
+            margin-right: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.1s ease-in-out;
+            @include noselect();
+
+            &:hover {
+                background-color: darken(#f9f9f9, 2%);
+            }
+
+            &:active {
+                background-color: darken(#f9f9f9, 5%);
+            }
+
+            &.active {
+                background-color: #282828;
+                color: #fff;
+                cursor: default;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+
+    .categories {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+
+    .categories {
+        overflow-y: auto;
+    }
+}
