@@ -207,7 +207,8 @@ a {
   .sort__popup {
     position: absolute;
     right: 0;
-    margin-top: 5px; }
+    margin-top: 5px;
+    min-width: 150px; }
     .sort__popup ul {
       background-color: #ffffff;
       border-radius: 10px;

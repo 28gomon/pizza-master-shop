@@ -1,9 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const Sort = () => {
+const Sort = ({ items }) => {
 
 	const sortRef = useRef();
 	const [visibleSort, setVisibleSort] = useState(false);
+	const [activeItemSort, setActiveItemSort] = useState(0);
+	const activeLabelSort = items[activeItemSort];
+
+	const handlerOnClickItemSort = (id) => {
+		setActiveItemSort(id);
+		setVisibleSort(false);
+	};
 
 	const toggleVisibleSort = () => {
 		setVisibleSort(!visibleSort);
@@ -26,14 +33,22 @@ const Sort = () => {
 				<p><i className={ `fa fa-angle-${visibleSort ? 'up' : 'down'}` }/>Сортировка по:</p>
 				<span
 					onClick={toggleVisibleSort}
-				>популярности</span>
+				>{ activeLabelSort }</span>
 			</div>
 			{
 				visibleSort && <div className={ 'sort__popup' }>
 					<ul>
-						<li className={ 'active' }>популярности</li>
-						<li>цене</li>
-						<li>алфавиту</li>
+						{
+							items && items.map((name, index) => {
+								return (
+									<li
+										onClick={() => handlerOnClickItemSort(index)}
+										className={activeItemSort === index ? 'active' : null}
+										key={`${name}_${index}`}
+									>{name}</li>
+								)
+							})
+						}
 					</ul>
 				</div>
 			}
