@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from './exp-components';
+import { NavLink } from "react-router-dom";
 
 import logo from '../assets/image/logo.png';
 
@@ -7,16 +7,16 @@ const Header = () => {
 	return (
 		<header className={ 'header' }>
 			<div className={ 'header__logo' }>
-				<Button href={'/'}>
+				<NavLink to={'/'}>
 					<img src={ logo } alt={ 'Logo' }/>
 					<p><span>PizzaMaster</span>Лучшая пицца твоего города</p>
-				</Button>
+				</NavLink>
 			</div>
 			<div className={ 'header__cart' }>
-				<Button href={'/carts'} className={'btn btn-cart'}>
+				<NavLink to={'/carts'} className={'btn btn-cart'}>
 					<span>45 BYN</span>
 					<span>2 <i className="fa fa-shopping-cart"/></span>
-				</Button>
+				</NavLink>
 			</div>
 		</header>
 	);
