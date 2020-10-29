@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './scss/app.scss';
-import { Switch, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import { Cart, Header, Home, } from './exp-components';
 
 const App = () => {
+
+	const [ pizzas, setPizzas ] = useState([]);
+
+	useEffect(() => {
+		fetch('http://localhost:3000/db.json')
+			.then(( response ) => response.json())
+			.then(( response ) => setPizzas(response.pizzas));
+	}, []);
+
 	return (
 		<div className={ 'app' }>
 
@@ -15,8 +24,12 @@ const App = () => {
 					<Header/>
 
 					<Switch>
-						<Route exact path={'/'} render={() => <Home/>}/>
-						<Route exact path={'/cart'} render={() => <Cart/>} />
+						<Route
+							exact
+							path={ '/' }
+							render={ () => <Home items={ pizzas }/> }
+						/>
+						<Route exact path={ '/cart' } render={ () => <Cart/> }/>
 					</Switch>
 
 				</div>
