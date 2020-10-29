@@ -13,7 +13,7 @@ const Header = () => {
 				</NavLink>
 			</div>
 			<div className={ 'header__cart' }>
-				<NavLink to={'/carts'} className={'btn btn-cart'}>
+				<NavLink to={'/cart'} className={'btn btn-cart'}>
 					<span>45 BYN</span>
 					<span>2 <i className="fa fa-shopping-cart"/></span>
 				</NavLink>

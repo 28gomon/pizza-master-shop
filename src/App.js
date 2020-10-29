@@ -1,7 +1,8 @@
 import React from 'react';
 import './scss/app.scss';
+import { Switch, Route } from 'react-router-dom';
 
-import { Header, Home, } from './exp-components';
+import { Cart, Header, Home, } from './exp-components';
 
 const App = () => {
 	return (
@@ -13,7 +14,10 @@ const App = () => {
 
 					<Header/>
 
-					<Home />
+					<Switch>
+						<Route exact path={'/'} render={() => <Home/>}/>
+						<Route exact path={'/cart'} render={() => <Cart/>} />
+					</Switch>
 
 				</div>
 

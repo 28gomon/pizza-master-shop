@@ -203,7 +203,8 @@ a {
       font-weight: 600; }
     .sort__label span {
       color: #fe5f1e;
-      cursor: pointer; }
+      cursor: pointer;
+      text-decoration: underline; }
   .sort__popup {
     position: absolute;
     right: 0;
