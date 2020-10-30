@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from "../exp-components";
 
 const Cart = () => {
 	return (
@@ -83,8 +84,8 @@ const Cart = () => {
 				</div>
 
 				<div className={'buttons'}>
-					<button><i className="fa fa-angle-left"/> Вернуться назад</button>
-					<button>Оплатить</button>
+					<Button><i className="fa fa-angle-left"/> Вернуться назад</Button>
+					<Button>Оплатить</Button>
 				</div>
 			</div>
 

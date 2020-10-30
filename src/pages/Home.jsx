@@ -2,12 +2,15 @@ import React from 'react';
 import { Categories, PizzaItem, Sort, } from "../exp-components";
 
 const Home = ({ items }) => {
+
 	return (
 		<>
 			<div className={ 'top-bar' }>
 
 				<Categories
-					onClickItem={(name) => console.log(name)}
+					onClickItem={ ( name ) => {
+
+					} }
 					items={ [
 						'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые',
 					] }
