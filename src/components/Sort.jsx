@@ -5,7 +5,7 @@ const Sort = ({ items }) => {
 	const sortRef = useRef();
 	const [visibleSort, setVisibleSort] = useState(false);
 	const [activeItemSort, setActiveItemSort] = useState(0);
-	const activeLabelSort = items[activeItemSort];
+	const activeLabelSort = items[activeItemSort].name;
 
 	const handlerOnClickItemSort = (id) => {
 		setActiveItemSort(id);
@@ -39,13 +39,13 @@ const Sort = ({ items }) => {
 				visibleSort && <div className={ 'sort__popup' }>
 					<ul>
 						{
-							items && items.map((name, index) => {
+							items && items.map((obj, index) => {
 								return (
 									<li
 										onClick={() => handlerOnClickItemSort(index)}
 										className={activeItemSort === index ? 'active' : null}
-										key={`${name}_${index}`}
-									>{name}</li>
+										key={`${obj.type}_${index}`}
+									>{obj.name}</li>
 								)
 							})
 						}
