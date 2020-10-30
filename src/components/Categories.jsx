@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-const Categories = ( { items, onClickItem } ) => {
+const Categories = React.memo(( { items, onClickItem } ) => {
 
 	const [activeItem, setActiveItem] = useState(null);
 
-	const handlerOnClickItem = (name, id) => {
-		onClickItem(name);
-		setActiveItem(id);
+	const handlerOnClickItem = (index) => {
+		setActiveItem(index);
+		onClickItem(index);
 	};
 
 	return (
@@ -14,14 +14,14 @@ const Categories = ( { items, onClickItem } ) => {
 			<ul>
 				<li
 					className={activeItem === null ? 'active' : null}
-					onClick={() => setActiveItem(null)}
+					onClick={() => handlerOnClickItem(null)}
 				>Все</li>
 				{
 					items && items.map(( name, index ) => {
 						return (
 							<li
 								className={activeItem === index ? 'active' : null}
-								onClick={ () => handlerOnClickItem(name, index) }
+								onClick={ () => handlerOnClickItem(index) }
 								key={ `${ name }_${ index }` }
 							>{ name }</li>
 						)
@@ -30,6 +30,6 @@ const Categories = ( { items, onClickItem } ) => {
 			</ul>
 		</div>
 	);
-};
+});
 
 export default Categories;

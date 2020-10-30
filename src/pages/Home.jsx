@@ -1,27 +1,38 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Categories, PizzaItem, Sort, } from "../exp-components";
+import { useDispatch, useSelector } from "react-redux";
 
-const Home = ({ items }) => {
+import { setCategory } from '../redux/actions/filters';
+
+const CATEGORIES = [
+	'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые',
+];
+const SORT_ITEMS = [
+	{ name: 'популярности', type: 'popular' },
+	{ name: 'цене', type: 'price' },
+	{ name: 'алфавиту', type: 'alphabet' },
+];
+
+const Home = () => {
+
+	const dispatch = useDispatch();
+	const items = useSelector(( { pizzas }) => pizzas.items);
+
+	const onSelectCategory = useCallback((index) => {
+		dispatch(setCategory(index));
+	}, [dispatch]);
 
 	return (
 		<>
 			<div className={ 'top-bar' }>
 
 				<Categories
-					onClickItem={ ( name ) => {
-
-					} }
-					items={ [
-						'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые',
-					] }
+					onClickItem={ onSelectCategory }
+					items={ CATEGORIES }
 				/>
 
 				<Sort
-					items={ [
-						{ name: 'популярности', type: 'popular' },
-						{ name: 'цене', type: 'price' },
-						{ name: 'алфавиту', type: 'alphabet' },
-					] }
+					items={ SORT_ITEMS }
 				/>
 
 			</div>
@@ -33,7 +44,7 @@ const Home = ({ items }) => {
 			<div className={ 'products__items' }>
 
 				{
-					items.map((obj) => {
+					items && items.map((obj) => {
 						return (
 							<PizzaItem
 								key={obj.id}

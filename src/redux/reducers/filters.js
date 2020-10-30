@@ -1,4 +1,4 @@
-import { SET_SORT_BY } from "../types";
+import { SET_CATEGORY, SET_SORT_BY } from "../types";
 
 const initialState = {
 	category: 0,
@@ -12,6 +12,11 @@ export const filters = (state = initialState, action) => {
 			return {
 				...state, sortBy: action.payload,
 			};
+
+		case SET_CATEGORY:
+			return {
+				...state, category: action.payload,
+			}
 
 		default:
 			return state;
