@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 
-const Sort = React.memo(({ items }) => {
+const Sort = React.memo(({ items, onClickSortType, activeSortType }) => {
 
 	const sortRef = useRef();
 	const [visibleSort, setVisibleSort] = useState(false);
-	const [activeItemSort, setActiveItemSort] = useState(0);
-	const activeLabelSort = items[activeItemSort].name;
+	const activeLabelSort = items.find(obj => obj.type === activeSortType).name;
 
-	const handlerOnClickItemSort = (id) => {
-		setActiveItemSort(id);
+	const handlerOnClickItemSort = (type) => {
+		onClickSortType(type);
 		setVisibleSort(false);
 	};
 
@@ -42,8 +42,8 @@ const Sort = React.memo(({ items }) => {
 							items && items.map((obj, index) => {
 								return (
 									<li
-										onClick={() => handlerOnClickItemSort(index)}
-										className={activeItemSort === index ? 'active' : null}
+										onClick={() => handlerOnClickItemSort(obj)}
+										className={activeSortType === obj.type ? 'active' : null}
 										key={`${obj.type}_${index}`}
 									>{obj.name}</li>
 								)
@@ -55,5 +55,15 @@ const Sort = React.memo(({ items }) => {
 		</div>
 	);
 });
+
+Sort.propTypes = {
+	items: PropTypes.arrayOf(PropTypes.object).isRequired,
+	activeSortType: PropTypes.string.isRequired,
+	onClickSortType: PropTypes.func,
+};
+
+Sort.defaultProps = {
+	items: [],
+}
 
 export default Sort;

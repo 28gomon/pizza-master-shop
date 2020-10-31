@@ -1,8 +1,8 @@
 import { SET_CATEGORY, SET_SORT_BY } from "../types";
 
-export const setSortBy = (sortByName) => ({
+export const setSortBy = ( { type, order }) => ({
 	type: SET_SORT_BY,
-	payload: sortByName,
+	payload: { type, order },
 });
 
 export const setCategory = (index) => ({
