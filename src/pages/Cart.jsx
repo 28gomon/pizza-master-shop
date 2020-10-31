@@ -1,7 +1,12 @@
-import React from 'react';
-import { Button } from "../exp-components";
+import React, { useEffect } from 'react';
+import { Button } from '../exp-components';
 
 const Cart = () => {
+
+	useEffect(() => {
+		document.title = 'Оформление заказа';
+	});
+
 	return (
 		<div className={'cart'}>
 

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Categories, PizzaItem, Sort, } from "../exp-components";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -21,6 +21,10 @@ const Home = () => {
 	const onSelectCategory = useCallback((index) => {
 		dispatch(setCategory(index));
 	}, [dispatch]);
+
+	useEffect(() => {
+		document.title = 'Лучшая пицца твоего города';
+	}, []);
 
 	return (
 		<>
